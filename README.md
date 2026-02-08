@@ -15,3 +15,16 @@ Docker installed
 docker compose up -d
 ```
 4. Navigate to `http://localhost:3000`
+
+## Adding more input files
+
+Press "Refresh Report" for reading new DMARC report files
+
+
+# Screenshots
+
+On the example, multiple `.gz` and `.zip` files downloaded from DAMRC report files sent by Google, Hotmail, etc. were added to `DMARC_DIR` folder
+
+You don't need to uncompress them, just download them from your email client, drop them in the `DMARC_DIR` folder and press "Refresh report" button
+
+![Report Output example](./docs/screenshot1.jpg)
