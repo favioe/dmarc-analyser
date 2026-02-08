@@ -8,13 +8,15 @@ Docker installed
 ## How to use
 
 1. Clone the repository
-2. Set you DMARC reports folder (input) on `.env` file (see env.example)
-3. From project root run
+2. Create a `.env` file. You can create it based on [`env.example`](env.example) 
+3. Set you `DMARC_DIR` reports folder (input) on `.env` file (see env.example)
+4. Download your tons of DMARC reports sent by Gmail, Hotmail, etc.
+5. From project root run
 
 ```bash
 docker compose up -d
 ```
-4. Navigate to `http://localhost:3000`
+5. Navigate to `http://localhost:3000` (set your ports on `.env` file)
 
 ## Adding more input files
 
