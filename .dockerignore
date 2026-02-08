@@ -1,0 +1,7 @@
+DMARC
+*.xml
+.git
+.env
+client
+*.md
+.DS_Store

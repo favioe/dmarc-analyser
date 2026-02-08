@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  dmarc-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dmarc-analyzer-api
+    ports:
+      - "${DMARC_API_PORT:-8080}:8080"
+    environment:
+      - PORT=8080
+      - DMARC_DIR=/data/DMARC
+      - KNOWN_SERVER_IPS=${KNOWN_SERVER_IPS:-}
+    volumes:
+      - ./DMARC:/data/DMARC:ro
+    networks:
+      - dmarc-network
+    restart: unless-stopped
+
+  dmarc-frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: dmarc-analyzer-frontend
+    ports:
+      - "${DMARC_FRONTEND_PORT:-3000}:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:${DMARC_API_PORT:-8080}
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+      - /app/node_modules
+    networks:
+      - dmarc-network
+    depends_on:
+      - dmarc-api
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+networks:
+  dmarc-network:
+    driver: bridge
