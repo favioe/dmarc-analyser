@@ -16,7 +16,7 @@ Docker installed
 ```bash
 docker compose up -d
 ```
-5. Navigate to `http://localhost:3000` (set your ports on `.env` file)
+6. Navigate to `http://localhost:3000` (set your ports on `.env` file)
 
 ## Adding more input files
 
